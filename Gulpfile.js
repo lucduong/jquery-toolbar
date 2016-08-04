@@ -42,7 +42,7 @@ gulp.task('dev-css', function (done) {
 });
 
 gulp.task('dist-clean', function (done) {
-  del(config.destination.css + '/**/*.css', {force: true})
+  del(config.dist.path, {force: true})
     .then(function () {
       done();
     });
