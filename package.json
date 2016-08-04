@@ -1,0 +1,54 @@
+{
+  "name": "jquery-toolbar",
+  "version": "1.0.0",
+  "description": "JQuery toolbar",
+  "main": [
+    "dist/jquery-toolbar.min.js",
+    "dist/jquery-toolbar.min.css"
+  ],
+  "scripts": {
+    "install": "bower install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucduong/jquery-toolbar.git"
+  },
+  "keywords": [
+    "jquery",
+    "toolbar"
+  ],
+  "author": {
+    "name": "Luc Duong",
+    "email": "luc@e4u.vn"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lucduong/jquery-toolbar/issues"
+  },
+  "homepage": "https://github.com/lucduong/jquery-toolbar#readme",
+  "dependencies": {
+    "del": "^2.2.1",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-clean-css": "^2.0.12",
+    "gulp-csscomb": "^3.0.7",
+    "gulp-csslint": "^0.3.1",
+    "gulp-exec": "^2.1.2",
+    "gulp-header": "^1.8.7",
+    "gulp-jshint": "^2.0.1",
+    "gulp-minify": "0.0.13",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-uglify": "^2.0.0",
+    "gulp-util": "^3.0.7",
+    "gulp-watch": "^4.3.9",
+    "jshint": "^2.9.2",
+    "run-sequence": "^1.2.2"
+  },
+  "devDependencies": {
+    "bower": "^1.7.9",
+    "gulp": "^3.9.1"
+  }
+}

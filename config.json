@@ -1,0 +1,31 @@
+{
+  "destination": {
+    "assets": "public/assets",
+    "js": "public/assets/js",
+    "css": "public/assets/css",
+    "images": "public/assets/images",
+    "fonts": "public/assets/fonts",
+    "vendor": "public/vendor"
+  },
+  "source": {
+    "path": "src",
+    "js": "src/js",
+    "sass": "src/scss",
+    "fonts": "src/fonts",
+    "vendor": "src/vendor",
+    "images": "src/images"
+  },
+  "dist": {
+    "path": "dist"
+  },
+  "autoprefixerBrowsers": [
+    "Android 2.3",
+    "Android >= 4",
+    "Chrome >= 20",
+    "Firefox >= 24",
+    "Explorer >= 8",
+    "iOS >= 6",
+    "Opera >= 12",
+    "Safari >= 6"
+  ]
+}

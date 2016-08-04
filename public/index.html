@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Toolbar</title>
+  <link href="./vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="./vendor/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+  <link href="./vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="./assets/css/jquery-toolbar.css" rel="stylesheet">
+  <style type="text/css">
+    .dir-icon {
+      width: 20px;
+      position: relative;
+      display: inline-block;
+      height: 20px;
+    }
+    .icon {
+      width: 20px;
+      position: relative;
+    }
+    .icon-down-right i, .icon-left-down i, .icon-up-right i, .icon-left-up i {
+      position: absolute;
+    }
+    .icon-down-right .fa-long-arrow-down {
+      top: 0;
+      left: 0;
+    }
+    .icon-down-right .fa-long-arrow-right {
+      top: -6px;
+      left: 2px;
+    }
+    .icon-left-down .fa-long-arrow-left {
+      right: 2px;
+      top: -6px;
+    }
+    .icon-left-down .fa-long-arrow-down {
+      right: 0px;
+      top: 0px;
+    }
+    .icon-up-right .fa-long-arrow-up {
+      top: 0;
+      left: 0;
+    }
+    .icon-up-right .fa-long-arrow-right {
+      bottom: 0;
+      left: 2px;
+    }
+    .icon-left-up .fa-long-arrow-left {
+      right: 2px;
+      bottom: -6px;
+    }
+    .icon-left-up .fa-long-arrow-up {
+      right: 0;
+      bottom: 0px;
+    }
+  </style>
+</head>
+<body>
+
+<section class="container-fluid">
+  <div id="toolbar"></div>
+</section>
+
+<script type="text/javascript" src="./vendor/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="./vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./assets/js/jquery-toolbar.js"></script>
+<script type="text/javascript" src="./index.js"></script>
+</body>
+</html>
