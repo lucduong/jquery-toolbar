@@ -1,7 +1,27 @@
-$background-color: #fff;
+$color-white: #fff;
+$background-color: $color-white;
 $primary-color: rgba(82, 96, 105, .9);
 $shadow-color: rgba(0, 0, 0, .08);
 $default-item-padding: 5px;
+$color-blue-grey-200   : #e4eaec;
+
+$brand-primary:             #0275d8 !default;
+$brand-success:             #5cb85c !default;
+$brand-info:                #5bc0de !default;
+$brand-warning:             #f0ad4e !default;
+$brand-danger:              #d9534f !default;
+
+@mixin radio-variant($color){
+  input[type="radio"]:checked + label {
+    &::before {
+      // background-color: $color;
+      border-color: $color;
+    }
+    &::after {
+      border-color: $color-white;
+    }
+  }
+}
 
 .toolbar {
   background-color: $background-color;
@@ -66,4 +86,39 @@ $default-item-padding: 5px;
       }
     }
   }
+}
+
+.radio-custom {
+  position: relative;
+  display: block;
+  margin-top: 7px;
+  margin-bottom: 8px;
+}
+
+.radio-default {
+  input[type="radio"]:checked + label {
+    &::before {
+      background-color: $color-white;
+      border-color: $color-blue-grey-200;
+    }
+    &::after {
+      border-color: $brand-primary;
+    }
+  }
+}
+
+.radio-primary {
+  @include radio-variant($brand-primary);
+}
+.radio-danger {
+  @include radio-variant($brand-danger);
+}
+.radio-info {
+  @include radio-variant($brand-info);
+}
+.radio-warning {
+  @include radio-variant($brand-warning);
+}
+.radio-success {
+  @include radio-variant($brand-success);
 }

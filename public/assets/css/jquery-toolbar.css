@@ -11,7 +11,6 @@
   position: absolute;
   z-index: 999;
   color: rgba(82, 96, 105, .9);
-  width: 100%;
   font-family: Roboto, sans-serif;
 }
 
@@ -69,4 +68,60 @@
 
 .toolbar ul.list-group .list-group-item .list-group .list-group-item button.btn-sm {
   padding: 7px 10px;
+}
+
+.radio-custom {
+  position: relative;
+  display: block;
+  margin-top: 7px;
+  margin-bottom: 8px;
+}
+
+.radio-default input[type="radio"]:checked + label::before {
+  background-color: #fff;
+  border-color: #e4eaec;
+}
+
+.radio-default input[type="radio"]:checked + label::after {
+  border-color: #0275d8;
+}
+
+.radio-primary input[type="radio"]:checked + label::before {
+  border-color: #0275d8;
+}
+
+.radio-primary input[type="radio"]:checked + label::after {
+  border-color: #fff;
+}
+
+.radio-danger input[type="radio"]:checked + label::before {
+  border-color: #d9534f;
+}
+
+.radio-danger input[type="radio"]:checked + label::after {
+  border-color: #fff;
+}
+
+.radio-info input[type="radio"]:checked + label::before {
+  border-color: #5bc0de;
+}
+
+.radio-info input[type="radio"]:checked + label::after {
+  border-color: #fff;
+}
+
+.radio-warning input[type="radio"]:checked + label::before {
+  border-color: #f0ad4e;
+}
+
+.radio-warning input[type="radio"]:checked + label::after {
+  border-color: #fff;
+}
+
+.radio-success input[type="radio"]:checked + label::before {
+  border-color: #5cb85c;
+}
+
+.radio-success input[type="radio"]:checked + label::after {
+  border-color: #fff;
 }
