@@ -42,7 +42,10 @@
       init: $.proxy(this.init, this),
       getState: $.proxy(this.getItemState, this),
       getSelectedItem: $.proxy(this.getSelectedItem, this),
-      getItemValue: $.proxy(this.getItemValue, this)
+      getItemValue: $.proxy(this.getItemValue, this),
+      hideItemById: $.proxy(this.hideItemById, this),
+      hideGroupById: $.proxy(this.hideGroupById, this),
+      hideGroupByItemId: $.proxy(this.hideGroupByItemId, this)
     };
   };
 
@@ -137,6 +140,7 @@
       if (group.childs) {
         var _this = this;
         var itemWrapper = $(_this.template.list);
+        itemWrapper.attr('id', group.id);
         $.each(group.childs, function (index, child) {
           var item = $(_this.template.item);
           item.append(_this.buildItem(child));
@@ -295,6 +299,10 @@
     if (typeof (this.options.onItemSelected) === 'function') {
       this.$element.on('onItemSelected', this.options.onItemSelected);
     }
+
+    if (typeof (this.options.onButtonClick) === 'function') {
+      this.$element.on('onButtonClick', this.options.onButtonClick);
+    }
   };
 
   Toolbar.prototype.findItem = function (target) {
@@ -320,6 +328,71 @@
     return item;
   };
 
+  /**
+   * Hide Item by Item Id
+   *
+   * @param id
+   * @param flag (true|false)
+   */
+  Toolbar.prototype.hideItemById = function (id, flag) {
+    if (flag === undefined)
+      flag = true;
+    if (flag) {
+      $('#' + id).hide();
+    } else {
+      $('#' + id).show();
+    }
+  };
+
+  /**
+   * Hide group by group Id
+   *
+   * @param id
+   * @param flag
+   */
+  Toolbar.prototype.hideGroupById = function (id, flag) {
+    if (flag === undefined)
+      flag = true;
+    if (flag) {
+      $('#' + id).closest('li.list-group-item').hide();
+    } else {
+      $('#' + id).closest('li.list-group-item').show();
+    }
+  };
+
+  /**
+   * Hide group by Item ID (Find the group which contains the item and hide it)
+   *
+   * @param id
+   * @param flag
+   */
+  Toolbar.prototype.hideGroupByItemId = function (id, flag) {
+    if (flag === undefined)
+      flag = true;
+    var $group = $('#' + id).closest('ul.list-group');
+    if (flag) {
+      $group.hide();
+    } else {
+      $group.show();
+    }
+  };
+
+  /**
+   * Remove item out of toolbar
+   *
+   * @param id
+   */
+  Toolbar.prototype.removeItem = function (id) {
+    // TODO: Not working perfectly.
+    for (var i = 0; i < this.childs.length; i++) {
+      if (this.childs[i].id === id) {
+        this.splice(i, 1);
+        $('#' + this.childs[i].id).remove();
+        break;
+      }
+    }
+  };
+
   Toolbar.prototype.clickHandler = function (event) {
     var target = $(event.target);
     var item = this.findItem(target);
@@ -338,6 +411,9 @@
       case "checkbox":
         item.state.selected = !item.state.selected;
         this.$element.trigger('onItemSelected', $.extend(true, {}, item));
+        break;
+      case "button":
+        this.$element.trigger('onButtonClick', $.extend(true, {}, item));
         break;
     }
     // console.log("clickHandler", item);
@@ -423,4 +499,12 @@
     return result || this;
   };
 
+  // Array additional function
+  Array.prototype.removeItem = function (x) {
+    for (var i in this) {
+      if (this[i] === x) {
+        this.splice(i, 1);
+      }
+    }
+  }
 })(jQuery, window, document);

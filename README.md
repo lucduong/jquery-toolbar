@@ -319,17 +319,17 @@ The following is a list of all available methods.
 **getState(id)**
 Get the state of item by Id
 
-`$toolbar.getState(id)`
+`$('#toolbar').toolbar('getState', id)`
 
 **getSelectedItem(id)**
 Get selected item by Id
 
-`$toolbar.getState(id)`
+`$('#toolbar').toolbar('getState', id);`
 
 **getItemValue(id)**
 Get value of item by Id
 
-`$toolbar.getItemValue(id)`
+`$('#toolbar').toolbar('getItemValue', id);`
 
 ## Events
 You can bind to any event defined below by either using an options callback handler, or the standard jQuery .on method.
