@@ -498,13 +498,4 @@
 
     return result || this;
   };
-
-  // Array additional function
-  Array.prototype.removeItem = function (x) {
-    for (var i in this) {
-      if (this[i] === x) {
-        this.splice(i, 1);
-      }
-    }
-  }
 })(jQuery, window, document);
