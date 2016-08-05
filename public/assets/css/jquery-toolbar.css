@@ -73,8 +73,6 @@
 .radio-custom {
   position: relative;
   display: block;
-  margin-top: 7px;
-  margin-bottom: 8px;
 }
 
 .radio-default input[type="radio"]:checked + label::before {

@@ -257,6 +257,19 @@ $(document).ready(function () {
             "styleName": "btn btn-default btn-sm"
           }
         ]
+      },
+      {
+        "id": "group10",
+        "name": "group10",
+        "childs": [
+          {
+            "id": "btnInfo",
+            "name": "btnInfo",
+            "type": "toggleButton",
+            "useIcon": "fa fa-info-circle",
+            "styleName": "btn btn-default btn-sm"
+          }
+        ]
       }
     ],
     onDropDownSelected: onDropDownSelected,
