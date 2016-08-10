@@ -30,7 +30,10 @@ $(document).ready(function () {
             "name": "btnBoundary",
             "text": "D",
             "type": "toggleButton",
-            "styleName": "btn btn-default btn-sm"
+            "styleName": "btn btn-default btn-sm",
+            "state": {
+              "toggled": true
+            }
           },
           {
             "id": "btnNomination",

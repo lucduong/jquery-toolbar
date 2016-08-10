@@ -1,5 +1,5 @@
 /*!
- * jquery-toolbar (https://github.com/lucduong/jquery-toolbar#readme)
+ * jquery-toolbar - 1.0.2 (https://github.com/lucduong/jquery-toolbar#readme)
  * Copyright 2016 Luc Duong (luc@e4u.vn)
  * Licensed under the MIT
  */
@@ -45,7 +45,8 @@
       getItemValue: $.proxy(this.getItemValue, this),
       hideItemById: $.proxy(this.hideItemById, this),
       hideGroupById: $.proxy(this.hideGroupById, this),
-      hideGroupByItemId: $.proxy(this.hideGroupByItemId, this)
+      hideGroupByItemId: $.proxy(this.hideGroupByItemId, this),
+      toggleButton: $.proxy(this.toggleButton, this)
     };
   };
 
@@ -110,7 +111,7 @@
     }
 
     // set toggled state; unless set always false
-    if (!item.state.hasOwnProperty('item.state.toggled')) {
+    if (!item.state.hasOwnProperty('toggled')) {
       item.state.toggled = false;
     }
     return item;
@@ -204,6 +205,9 @@
           $item.append($(_this.template.image).attr('src', item.useImage).attr('style', item.imageStyle || ''));
         } else {
           $item.append(item.text);
+        }
+        if (item.state.toggled) {
+          $item.addClass('active').attr('aria-pressed', true);
         }
       case "checkbox":
         break;
@@ -326,6 +330,26 @@
       console.log('Error: item does not exist');
     }
     return item;
+  };
+
+  /**
+   * Toggle Button by button Id
+   *
+   * @param id
+   * @param flag
+   */
+  Toolbar.prototype.toggleButton = function (id, flag) {
+    var item = this.childs[id];
+    if (!item) {
+      console.log('Error: item does not exist');
+    } else {
+      this.childs[i].state.toggled = flag;
+      if (flag) {
+        $('#' + id).addClass('active').attr('aria-pressed', true);
+      } else {
+        $('#' + id).removeClass('active').attr('aria-pressed', false);
+      }
+    }
   };
 
   /**
