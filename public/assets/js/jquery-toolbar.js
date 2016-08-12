@@ -147,6 +147,9 @@
           item.append(_this.buildItem(child));
 
           itemWrapper.append(item);
+          if (child.type == "groupRadioButton") {
+            itemWrapper.attr('data-toggle', 'buttons');
+          }
         });
         groupItem.append(itemWrapper);
         this.$wrapper.append(groupItem);
@@ -209,7 +212,20 @@
         if (item.state.toggled) {
           $item.addClass('active').attr('aria-pressed', true);
         }
+        break;
       case "checkbox":
+        break;
+      case "groupRadioButton":
+        $item = $(this.template.label).addClass(item.styleName || 'btn btn-default btn-sm');
+        var $radio = $(this.template.type.radio).attr('id', item.id)
+          .attr('name', item.name)
+          .attr('value', item.value);
+        item.state.toggled = item.state.selected;
+        if (item.state.selected) {
+          $item.addClass('active');
+          $radio.attr('checked', true);
+        }
+        $item.append($radio).append(item.text);
         break;
       case "radio":
         var $radioItem = $(this.template.type.radio).attr('id', item.id || '')
@@ -310,6 +326,13 @@
   };
 
   Toolbar.prototype.findItem = function (target) {
+    if (target.prop('tagName') === "LABEL") {
+      var target = target.children('input');
+      var itemId = target.attr('id');
+      if (!itemId) return;
+      var item = this.childs[itemId];
+      if (item) return item;
+    }
     var itemId = target.closest('.item').attr('id');
     if (!itemId)
       return;
@@ -325,10 +348,6 @@
     if (!id)
       return;
     var item = this.childs[id];
-
-    if (!item) {
-      console.log('Error: item does not exist');
-    }
     return item;
   };
 
@@ -343,7 +362,7 @@
     if (!item) {
       console.log('Error: item does not exist');
     } else {
-      this.childs[i].state.toggled = flag;
+      this.childs[id].state.toggled = flag;
       if (flag) {
         $('#' + id).addClass('active').attr('aria-pressed', true);
       } else {
@@ -419,6 +438,7 @@
 
   Toolbar.prototype.clickHandler = function (event) {
     var target = $(event.target);
+    // if (target.prop)
     var item = this.findItem(target);
     if (!item || item.state.disabled) return;
 
@@ -430,6 +450,15 @@
       case "toggleButton":
         item.state.toggled = !item.state.toggled;
         this.$element.trigger('onButtonToggled', $.extend(true, {}, item));
+        break;
+      case "groupRadioButton":
+        item.state.selected = !item.state.selected;
+        item.state.toggled = !item.state.toggled;
+        this.$element.trigger('onButtonToggled', $.extend(true, {}, item));
+        this.$element.trigger('onItemSelected', $.extend(true, {}, item));
+
+        $('input[name="' + item.name + '"]').removeAttr('checked');
+        $('#' + item.id).attr('checked', true);
         break;
       case "radio":
       case "checkbox":
@@ -468,8 +497,15 @@
 
   Toolbar.prototype.getSelectedItem = function (id) {
     var item = this.findItemById(id);
+    if (!item) {
+      var $item = $("input[name='" + id + "'][checked='checked']");
+      item = this.findItemById($item.attr('id'));
+    }
+
     if (item.type == 'combo') {
       return item.options[item.selectedIndex];
+    } else if (item.type == "groupRadioButton") {
+      return item;
     } else {
       console.log("Error: Cannot get selectedItem of item which has type: [" + item.type + "]");
       return undefined;

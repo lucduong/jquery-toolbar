@@ -128,24 +128,36 @@ $(document).ready(function () {
         "childs": [
           {
             "id": "btnLevel1",
-            "name": "btnLevel1",
+            "name": "groupLevel",
             "text": "1",
-            "type": "toggleButton",
-            "styleName": "btn btn-default btn-sm"
+            "type": "groupRadioButton",
+            "value": "1",
+            "styleName": "btn btn-default btn-sm",
+            "state": {
+              "selected": true
+            }
           },
           {
             "id": "btnLevel2",
-            "name": "btnLevel2",
+            "name": "groupLevel",
             "text": "2",
-            "type": "toggleButton",
-            "styleName": "btn btn-default btn-sm"
+            "value": "2",
+            "type": "groupRadioButton",
+            "styleName": "btn btn-default btn-sm",
+            "state": {
+              "selected": false
+            }
           },
           {
             "id": "btnLevel3",
-            "name": "btnLevel3",
+            "name": "groupLevel",
             "text": "3",
-            "type": "toggleButton",
-            "styleName": "btn btn-default btn-sm"
+            "value": "3",
+            "type": "groupRadioButton",
+            "styleName": "btn btn-default btn-sm",
+            "state": {
+              "selected": false
+            }
           }
         ]
       },
