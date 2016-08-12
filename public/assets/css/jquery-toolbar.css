@@ -123,3 +123,13 @@
 .radio-success input[type="radio"]:checked + label::after {
   border-color: #fff;
 }
+
+[data-toggle=buttons] input[type=radio] {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  pointer-events: none;
+}
+
+[data-toggle=buttons] label {
+  border-radius: 0;
+}
