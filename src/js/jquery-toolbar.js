@@ -338,7 +338,7 @@
     if (!item) {
       console.log('Error: item does not exist');
     } else {
-      this.childs[i].state.toggled = flag;
+      this.childs[id].state.toggled = flag;
       if (flag) {
         $('#' + id).addClass('active').attr('aria-pressed', true);
       } else {
