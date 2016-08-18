@@ -447,6 +447,8 @@
         this.$element.trigger('onButtonToggled', $.extend(true, {}, item));
         break;
       case "groupRadioButton":
+        var preItem = this.getSelectedItem(item.name);
+        preItem.state.toggled = preItem.state.selected = false;
         item.state.selected = !item.state.selected;
         item.state.toggled = !item.state.toggled;
         this.$element.trigger('onButtonToggled', $.extend(true, {}, item));
