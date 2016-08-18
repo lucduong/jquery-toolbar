@@ -1,5 +1,5 @@
 /*!
- * jquery-toolbar - 1.0.3 (https://github.com/lucduong/jquery-toolbar#readme)
+ * jquery-toolbar - 1.0.4 (https://github.com/lucduong/jquery-toolbar#readme)
  * Copyright 2016 Luc Duong (luc@e4u.vn)
  * Licensed under the MIT
  */
@@ -452,6 +452,8 @@
         this.$element.trigger('onButtonToggled', $.extend(true, {}, item));
         break;
       case "groupRadioButton":
+        var preItem = this.getSelectedItem(item.name);
+        preItem.state.toggled = preItem.state.selected = false;
         item.state.selected = !item.state.selected;
         item.state.toggled = !item.state.toggled;
         this.$element.trigger('onButtonToggled', $.extend(true, {}, item));
