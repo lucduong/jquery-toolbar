@@ -227,7 +227,7 @@
           .attr('name', item.name || 'radioName')
           .attr('value', item.value || '');
         if (item.state.selected || item.state.checked) {
-          $radio.attr('checked', true);
+          $radioItem.attr('checked', true);
         }
         var $label = $(this.template.label).attr('for', item.id || '');
 
