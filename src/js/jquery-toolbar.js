@@ -379,9 +379,9 @@
     if (flag === undefined)
       flag = true;
     if (flag) {
-      $('#' + id).hide();
+      $('#' + id).closest('li.list-group-item').hide();
     } else {
-      $('#' + id).show();
+      $('#' + id).closest('li.list-group-item').show();
     }
   };
 
