@@ -216,7 +216,7 @@
           .attr('name', item.name)
           .attr('value', item.value);
         item.state.toggled = item.state.selected;
-        if (item.state.selected) {
+        if (item.state.selected || item.state.checked) {
           $item.addClass('active');
           $radio.attr('checked', true);
         }
@@ -226,6 +226,9 @@
         var $radioItem = $(this.template.type.radio).attr('id', item.id || '')
           .attr('name', item.name || 'radioName')
           .attr('value', item.value || '');
+        if (item.state.selected || item.state.checked) {
+          $radio.attr('checked', true);
+        }
         var $label = $(this.template.label).attr('for', item.id || '');
 
         $item = $(this.template.radioWrapper)
