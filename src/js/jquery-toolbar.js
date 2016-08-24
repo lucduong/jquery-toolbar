@@ -1,3 +1,8 @@
+/*!
+ * jquery-toolbar - 1.0.4 (https://github.com/lucduong/jquery-toolbar#readme)
+ * Copyright 2016 Luc Duong (luc@e4u.vn)
+ * Licensed under the MIT
+ */
 ;(function ($, window, document, undefined) {
 
   /*global jQuery, console*/
@@ -21,10 +26,8 @@
   _default.options = {};
 
   var Toolbar = function (element, options) {
-
     this.$element = $(element);
     this.elementId = element.id;
-    this.styleId = this.elementId + '-style';
 
     this.init(options);
 
@@ -49,7 +52,6 @@
     this.data = [];
     this.groups = [];
     this.childs = [];
-
 
     if (options.data) {
       if (typeof options.data === 'string') {
@@ -125,6 +127,10 @@
     }
 
     this.$element.empty().append(this.$wrapper.empty());
+    console.log('RENDER: ', this.$element);
+    this.$element.ready($.proxy(function () {
+      $(this).find('[data-toggle="tooltip"]').tooltip();
+    }, this.$element));
 
     this.build();
   };
@@ -216,7 +222,7 @@
           .attr('name', item.name)
           .attr('value', item.value);
         item.state.toggled = item.state.selected;
-        if (item.state.selected) {
+        if (item.state.selected || item.state.checked) {
           $item.addClass('active');
           $radio.attr('checked', true);
         }
@@ -226,6 +232,9 @@
         var $radioItem = $(this.template.type.radio).attr('id', item.id || '')
           .attr('name', item.name || 'radioName')
           .attr('value', item.value || '');
+        if (item.state.selected || item.state.checked) {
+          $radioItem.attr('checked', true);
+        }
         var $label = $(this.template.label).attr('for', item.id || '');
 
         $item = $(this.template.radioWrapper)
@@ -245,6 +254,12 @@
         break;
       case "datePicker":
         break;
+    }
+
+    if (item.tooltip) {
+      $item.attr('data-toggle', 'tooltip')
+        .attr('data-placement', item.tooltip.placement || 'top')
+        .attr('title', item.tooltip.text);
     }
 
     return $item;
@@ -376,9 +391,9 @@
     if (flag === undefined)
       flag = true;
     if (flag) {
-      $('#' + id).hide();
+      $('#' + id).closest('li.list-group-item').hide();
     } else {
-      $('#' + id).show();
+      $('#' + id).closest('li.list-group-item').show();
     }
   };
 

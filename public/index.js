@@ -13,6 +13,10 @@ $(document).ready(function () {
             "name": "viewType",
             "type": "combo",
             "selectedIndex": 2,
+            "tooltip": {
+              text: "Demo",
+              placement: "bottom"
+            },
             "options": [
               {text: "Standard", value: "1"},
               {text: "Actual", value: "2"},
@@ -31,6 +35,10 @@ $(document).ready(function () {
             "text": "D",
             "type": "toggleButton",
             "styleName": "btn btn-default btn-sm",
+            "tooltip": {
+              text: "Demo",
+              placement: "bottom"
+            },
             "state": {
               "toggled": true
             }
