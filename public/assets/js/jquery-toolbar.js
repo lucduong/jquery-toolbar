@@ -3,6 +3,11 @@
  * Copyright 2016 Luc Duong (luc@e4u.vn)
  * Licensed under the MIT
  */
+/*!
+ * jquery-toolbar - 1.0.4 (https://github.com/lucduong/jquery-toolbar#readme)
+ * Copyright 2016 Luc Duong (luc@e4u.vn)
+ * Licensed under the MIT
+ */
 ;(function ($, window, document, undefined) {
 
   /*global jQuery, console*/
@@ -26,10 +31,8 @@
   _default.options = {};
 
   var Toolbar = function (element, options) {
-
     this.$element = $(element);
     this.elementId = element.id;
-    this.styleId = this.elementId + '-style';
 
     this.init(options);
 
@@ -54,7 +57,6 @@
     this.data = [];
     this.groups = [];
     this.childs = [];
-
 
     if (options.data) {
       if (typeof options.data === 'string') {
@@ -130,6 +132,10 @@
     }
 
     this.$element.empty().append(this.$wrapper.empty());
+    console.log('RENDER: ', this.$element);
+    this.$element.ready($.proxy(function () {
+      $(this).find('[data-toggle="tooltip"]').tooltip();
+    }, this.$element));
 
     this.build();
   };
@@ -253,6 +259,12 @@
         break;
       case "datePicker":
         break;
+    }
+
+    if (item.tooltip) {
+      $item.attr('data-toggle', 'tooltip')
+        .attr('data-placement', item.tooltip.placement || 'top')
+        .attr('title', item.tooltip.text);
     }
 
     return $item;
