@@ -1,5 +1,5 @@
 /*!
- * jquery-toolbar - 1.0.4 (https://github.com/lucduong/jquery-toolbar#readme)
+ * jquery-toolbar - 1.0.5 (https://github.com/lucduong/jquery-toolbar#readme)
  * Copyright 2016 Luc Duong (luc@e4u.vn)
  * Licensed under the MIT
  */
@@ -22,6 +22,7 @@
     enableLinks: false,
 
     // Event Handlers
+    onReady: undefined,
     onDropDownSelected: undefined,
     onButtonToggled: undefined,
     onButtonClick: undefined,
@@ -132,7 +133,6 @@
     }
 
     this.$element.empty().append(this.$wrapper.empty());
-    console.log('RENDER: ', this.$element);
     this.$element.ready($.proxy(function () {
       $(this).find('[data-toggle="tooltip"]').tooltip();
     }, this.$element));
@@ -161,6 +161,10 @@
         this.$wrapper.append(groupItem);
       }
     }, this));
+
+    setTimeout($.proxy(function () {
+      this.$element.trigger('onReady', $.extend(true, {}, this.data));
+    }, this), 100);
   };
 
   Toolbar.prototype.buildItem = function (item) {
@@ -322,6 +326,10 @@
 
     this.$element.on('click', $.proxy(this.clickHandler, this));
     $('.item ul.dropdown-menu li').on('click', $.proxy(this.onDropDownClick, this));
+
+    if (typeof (this.options.onReady) === 'function') {
+      this.$element.on('onReady', this.options.onReady);
+    }
 
     if (typeof (this.options.onDropDownSelected) === 'function') {
       this.$element.on('onDropDownSelected', this.options.onDropDownSelected);
