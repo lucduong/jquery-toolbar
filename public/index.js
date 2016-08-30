@@ -296,10 +296,12 @@ $(document).ready(function () {
       }
     ],
     onDropDownSelected: onDropDownSelected,
-    onButtonToggled: onButtonToggled
+    onButtonToggled: onButtonToggled,
+    onReady: function (event, data) {
+      console.log("onReady: ", event.target, "data: ", data);
+    }
   };
-  var $toolbar = $('#toolbar').toolbar(options);
-  console.log($toolbar);
+  $('#toolbar').toolbar(options);
 
   function onDropDownSelected(event, item) {
   }
