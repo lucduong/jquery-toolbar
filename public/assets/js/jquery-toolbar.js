@@ -235,7 +235,14 @@
           $item.addClass('active');
           $radio.attr('checked', true);
         }
-        $item.append($radio).append(item.text);
+        $item.append($radio);
+        if (item.useIcon) {
+          $item.append($(_this.template.icon).attr('class', item.useIcon));
+        } else if (item.useImage) {
+          $item.append($(_this.template.image).attr('src', item.useImage).attr('style', item.imageStyle || ''));
+        } else if (item.text) {
+          $item.append(item.text);
+        }
         break;
       case "radio":
         var $radioItem = $(this.template.type.radio).attr('id', item.id || '')
