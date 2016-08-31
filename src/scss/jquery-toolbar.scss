@@ -86,6 +86,14 @@ $brand-danger: #d9534f !default;
       }
     }
   }
+
+  [data-toggle=buttons] label {
+    border-radius: 0;
+  }
+
+  [data-toggle=buttons] .list-group-item:last-child {
+    padding-right: 0 !important;
+  }
 }
 
 .radio-custom {
@@ -129,7 +137,4 @@ $brand-danger: #d9534f !default;
   position: absolute;
   clip: rect(0, 0, 0, 0);
   pointer-events: none;
-}
-[data-toggle=buttons] label {
-  border-radius: 0;
 }

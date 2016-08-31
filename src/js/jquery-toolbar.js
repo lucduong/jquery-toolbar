@@ -29,6 +29,7 @@
   var Toolbar = function (element, options) {
     this.$element = $(element);
     this.elementId = element.id;
+    this.groupRadioButtons = {};
 
     this.init(options);
 
@@ -137,10 +138,10 @@
 
   Toolbar.prototype.build = function () {
     $.each(this.data, $.proxy(function (index, group) {
+      var _this = this;
       var groupItem = $(this.template.item);
 
       if (group.childs) {
-        var _this = this;
         var itemWrapper = $(_this.template.list);
         itemWrapper.attr('id', group.id);
         $.each(group.childs, function (index, child) {
@@ -148,8 +149,9 @@
           item.append(_this.buildItem(child));
 
           itemWrapper.append(item);
-          if (child.type == "groupRadioButton") {
-            itemWrapper.attr('data-toggle', 'buttons');
+          if (child.type == "groupRadioButton" && !_this.groupRadioButtons[child.name]) {
+            _this.groupRadioButtons[child.name] = 'buttons';
+            // itemWrapper.attr('data-toggle', 'buttons');
           }
         });
         groupItem.append(itemWrapper);
@@ -158,6 +160,16 @@
     }, this));
 
     setTimeout($.proxy(function () {
+      // Enable data toggle for groupRadioButton
+      console.log("groupRadioButtons: --> ", this.groupRadioButtons);
+      for (var k in this.groupRadioButtons){
+        if (typeof this.groupRadioButtons[k] !== 'function') {
+          console.log("Key is " + k + ", value is" + this.groupRadioButtons[k]);
+          var $itemWrap = $("<div>").css('display', 'inline')
+            .attr('data-toggle', 'buttons');
+          $("input[name='" + k + "']").closest('.list-group-item').wrapAll($itemWrap);
+        }
+      }
       this.$element.trigger('onReady', $.extend(true, {}, this.data));
     }, this), 100);
   };
@@ -352,29 +364,30 @@
 
   Toolbar.prototype.findItem = function (currentTarget) {
     var target = currentTarget;
-    var tagNm = target.prop('tagName');
-    if (tagNm === "LABEL" || tagNm === "IMG" || tagNm === "I") {
-      switch (tagNm) {
-        case "LABEL":
-          target = target.children('input');
-          break;
-        case "IMG":
-        case "I":
-          target = target.prev('input');
-          break;
-        default:
-          target = target.prev('input');
-          break;
-      }
-
-      var itemId = target.attr('id');
-      if (!itemId) return;
-      var item = this.childs[itemId];
-      if (item) return item;
-    }
     var itemId = target.closest('.item').attr('id');
-    if (!itemId)
-      return;
+    if (!itemId) {
+      var tagNm = target.prop('tagName');
+      if (tagNm === "LABEL" || tagNm === "IMG" || tagNm === "I") {
+        switch (tagNm) {
+          case "LABEL":
+            target = target.children('input');
+            break;
+          case "IMG":
+          case "I":
+            target = target.prev('input');
+            break;
+          default:
+            target = target.prev('input');
+            break;
+        }
+
+        var itemId = target.attr('id');
+        if (!itemId) return;
+        var item = this.childs[itemId];
+        if (item) return item;
+      }
+      itemId = target.closest('.item').attr('id');
+    }
     var item = this.childs[itemId];
 
     if (!item) {
