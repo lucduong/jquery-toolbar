@@ -355,9 +355,23 @@
     }
   };
 
-  Toolbar.prototype.findItem = function (target) {
-    if (target.prop('tagName') === "LABEL") {
-      var target = target.children('input');
+  Toolbar.prototype.findItem = function (currentTarget) {
+    var target = currentTarget;
+    var tagNm = target.prop('tagName');
+    if (tagNm === "LABEL" || tagNm === "IMG") {
+      switch (tagNm) {
+        case "LABEL":
+          target = target.children('input');
+          break;
+        case "IMG":
+        case "I":
+          target = target.prev('input');
+          break;
+        default:
+          target = target.prev('input');
+          break;
+      }
+
       var itemId = target.attr('id');
       if (!itemId) return;
       var item = this.childs[itemId];
