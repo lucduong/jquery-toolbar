@@ -1,5 +1,5 @@
 /*!
- * jquery-toolbar - 1.0.8 (https://github.com/lucduong/jquery-toolbar#readme)
+ * jquery-toolbar - 1.0.9 (https://github.com/lucduong/jquery-toolbar#readme)
  * Copyright 2016 Luc Duong (luc@e4u.vn)
  * Licensed under the MIT
  */
@@ -70,6 +70,14 @@
   padding: 7px 10px;
 }
 
+.toolbar [data-toggle=buttons] label {
+  border-radius: 0;
+}
+
+.toolbar [data-toggle=buttons] .list-group-item:last-child {
+  padding-right: 0 !important;
+}
+
 .radio-custom {
   position: relative;
   display: block;
@@ -128,8 +136,4 @@
   position: absolute;
   clip: rect(0, 0, 0, 0);
   pointer-events: none;
-}
-
-[data-toggle=buttons] label {
-  border-radius: 0;
 }
