@@ -1,5 +1,5 @@
 /*!
- * jquery-toolbar - 1.0.5 (https://github.com/lucduong/jquery-toolbar#readme)
+ * jquery-toolbar - 1.0.8 (https://github.com/lucduong/jquery-toolbar#readme)
  * Copyright 2016 Luc Duong (luc@e4u.vn)
  * Licensed under the MIT
  */
@@ -358,7 +358,7 @@
   Toolbar.prototype.findItem = function (currentTarget) {
     var target = currentTarget;
     var tagNm = target.prop('tagName');
-    if (tagNm === "LABEL" || tagNm === "IMG") {
+    if (tagNm === "LABEL" || tagNm === "IMG" || tagNm === "I") {
       switch (tagNm) {
         case "LABEL":
           target = target.children('input');

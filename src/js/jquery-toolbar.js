@@ -353,7 +353,7 @@
   Toolbar.prototype.findItem = function (currentTarget) {
     var target = currentTarget;
     var tagNm = target.prop('tagName');
-    if (tagNm === "LABEL" || tagNm === "IMG") {
+    if (tagNm === "LABEL" || tagNm === "IMG" || tagNm === "I") {
       switch (tagNm) {
         case "LABEL":
           target = target.children('input');
