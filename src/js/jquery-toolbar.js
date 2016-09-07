@@ -151,7 +151,12 @@
           itemWrapper.append(item);
           if (child.type == "groupRadioButton" && !_this.groupRadioButtons[child.name]) {
             _this.groupRadioButtons[child.name] = 'buttons';
-            // itemWrapper.attr('data-toggle', 'buttons');
+          }
+
+          if (child.tooltip) {
+            item.attr('data-toggle', 'tooltip')
+              .attr('data-placement', child.tooltip.placement || 'top')
+              .attr('title', child.tooltip.text);
           }
         });
         groupItem.append(itemWrapper);
@@ -279,11 +284,11 @@
         break;
     }
 
-    if (item.tooltip) {
-      $item.attr('data-toggle', 'tooltip')
-        .attr('data-placement', item.tooltip.placement || 'top')
-        .attr('title', item.tooltip.text);
-    }
+    // if (item.tooltip) {
+    //   $item.closest('li.list-group-item').attr('data-toggle', 'tooltip')
+    //     .attr('data-placement', item.tooltip.placement || 'top')
+    //     .attr('title', item.tooltip.text);
+    // }
 
     return $item;
   };
