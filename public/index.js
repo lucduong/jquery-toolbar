@@ -55,7 +55,11 @@ $(document).ready(function () {
             "name": "btnBoundary",
             "text": "B",
             "type": "toggleButton",
-            "styleName": "btn btn-default btn-sm"
+            "styleName": "btn btn-default btn-sm",
+            "tooltip": {
+              text: "Demo",
+              placement: "bottom"
+            }
           }
         ]
       },

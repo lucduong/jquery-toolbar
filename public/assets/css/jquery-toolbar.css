@@ -1,5 +1,5 @@
 /*!
- * jquery-toolbar - 1.0.9 (https://github.com/lucduong/jquery-toolbar#readme)
+ * jquery-toolbar - 1.0.10 (https://github.com/lucduong/jquery-toolbar#readme)
  * Copyright 2016 Luc Duong (luc@e4u.vn)
  * Licensed under the MIT
  */
@@ -42,7 +42,7 @@
   border: none;
 }
 
-.toolbar ul.list-group .list-group-item .list-group .list-group-item:last-child {
+.toolbar ul.list-group .list-group-item .list-group .list-group-item:last-of-type {
   padding-right: 5px;
 }
 

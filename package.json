@@ -1,6 +1,6 @@
 {
   "name": "jquery-toolbar",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "JQuery toolbar",
   "main": [
     "dist/jquery-toolbar.min.js",
