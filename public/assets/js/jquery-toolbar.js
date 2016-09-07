@@ -1,5 +1,5 @@
 /*!
- * jquery-toolbar - 1.0.10 (https://github.com/lucduong/jquery-toolbar#readme)
+ * jquery-toolbar - 1.0.11 (https://github.com/lucduong/jquery-toolbar#readme)
  * Copyright 2016 Luc Duong (luc@e4u.vn)
  * Licensed under the MIT
  */
@@ -51,7 +51,8 @@
       hideItemById: $.proxy(this.hideItemById, this),
       hideGroupById: $.proxy(this.hideGroupById, this),
       hideGroupByItemId: $.proxy(this.hideGroupByItemId, this),
-      toggleButton: $.proxy(this.toggleButton, this)
+      toggleButton: $.proxy(this.toggleButton, this),
+      findItemById: $.proxy(this.findItemById, this)
     };
   };
 

@@ -46,7 +46,8 @@
       hideItemById: $.proxy(this.hideItemById, this),
       hideGroupById: $.proxy(this.hideGroupById, this),
       hideGroupByItemId: $.proxy(this.hideGroupByItemId, this),
-      toggleButton: $.proxy(this.toggleButton, this)
+      toggleButton: $.proxy(this.toggleButton, this),
+      findItemById: $.proxy(this.findItemById, this)
     };
   };
 
