@@ -47,7 +47,8 @@
       hideGroupById: $.proxy(this.hideGroupById, this),
       hideGroupByItemId: $.proxy(this.hideGroupByItemId, this),
       toggleButton: $.proxy(this.toggleButton, this),
-      findItemById: $.proxy(this.findItemById, this)
+      findItemById: $.proxy(this.findItemById, this),
+      disableItemById: $.proxy(this.disableItemById, this)
     };
   };
 
@@ -475,6 +476,21 @@
       $group.hide();
     } else {
       $group.show();
+    }
+  };
+
+  Toolbar.prototype.disableItemById = function (id, flag) {
+    if (flag === undefined)
+      flag = true;
+    var item = this.findItemById(id);
+    if (!item)
+      return;
+    item.state.disabled = flag;
+
+    if (flag) {
+      $('#' + id).addClass('disabled').closest('li.list-group-item').addClass('disabled');
+    } else {
+      $('#' + id).removeClass('disabled').closest('li.list-group-item').removeClass('disabled');
     }
   };
 
