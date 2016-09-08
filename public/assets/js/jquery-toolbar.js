@@ -401,10 +401,6 @@
       itemId = target.closest('.item').attr('id');
     }
     var item = this.childs[itemId];
-
-    if (!item) {
-      console.log('Error: item does not exist');
-    }
     return item;
   };
 
@@ -493,9 +489,9 @@
     item.state.disabled = flag;
 
     if (flag) {
-      $('#' + id).addClass('disabled').closest('li.list-group-item').addClass('disabled');
+      $('#' + id).addClass('disabled');
     } else {
-      $('#' + id).removeClass('disabled').closest('li.list-group-item').removeClass('disabled');
+      $('#' + id).removeClass('disabled');
     }
   };
 
