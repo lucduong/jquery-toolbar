@@ -18,7 +18,7 @@ This plugin are using `jquery`, `bootstrap`, `font-awesome` as belows:
 ### Install
 You can install using bower (recommended):
 
-`bower install --save git@github.com:lucduong/jquery-toolbar.git#v1.0.0`
+`bower install --save jquery-toolbar`
 
 or [Download](https://github.com/lucduong/jquery-toolbar/releases/tag/v1.0.0) manually
 
